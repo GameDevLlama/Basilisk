@@ -10,13 +10,13 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/basilisk_edit_text"
+        android:id="@+id/basilisk_edit_text_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/hello_world" />
 
-    <TextView
-        android:id="@+id/basilisk_text_view_1"
+    <EditText
+        android:id="@+id/basilisk_edit_text_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

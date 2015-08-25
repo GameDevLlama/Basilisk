@@ -30,7 +30,11 @@ public class Basilisk {
 
             @Override
             public void onNext(final Object string) {
-                textView.setText((String) string);
+                final String newString = (String) string;
+                if (textView.isFocused()) return;
+                if (!textView.getText().equals(newString)) {
+                    textView.setText(newString);
+                }
             }
         });
 

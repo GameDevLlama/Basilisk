@@ -18,13 +18,20 @@ public class AndroidWatcher {
 
             private PublishSubject<String> subject = watcherSubject;
 
+            private String currentString = null;
+
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                subject.onNext(charSequence.toString());
+
+                final String newString = charSequence.toString();
+                if (this.currentString != null && this.currentString.equals(newString)) return;
+                this.currentString = newString;
+                this.subject.onNext(newString);
+
             }
 
             @Override

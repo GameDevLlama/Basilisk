@@ -17,11 +17,11 @@ public class MainActivity extends AppCompatActivity {
 
     private TwoWayModel twoWayModel = new TwoWayModel();
 
-    @Bind(R.id.basilisk_edit_text)
-    EditText editText;
+    @Bind(R.id.basilisk_edit_text_1)
+    EditText editText1;
 
-    @Bind(R.id.basilisk_text_view_1)
-    TextView textView1;
+    @Bind(R.id.basilisk_edit_text_2)
+    EditText editText2;
 
     @Bind(R.id.basilisk_text_view_2)
     TextView textView2;
@@ -35,8 +35,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
-        Basilisk.bindModel(this.twoWayModel, this.editText);
-        Basilisk.bindTextView(this.textView1, this.twoWayModel);
+        Basilisk.bindModel(this.twoWayModel, this.editText1);
+        Basilisk.bindModel(this.twoWayModel, this.editText2);
+        Basilisk.bindTextView(this.editText1, this.twoWayModel);
+        Basilisk.bindTextView(this.editText2, this.twoWayModel);
+
         Basilisk.bindTextView(this.textView2, this.twoWayModel);
         Basilisk.bindTextView(this.textView3, this.twoWayModel);
 

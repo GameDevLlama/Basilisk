@@ -39,4 +39,9 @@ public class Basilisk {
         });
 
     }
+
+    public static void bind(final $$ModelBinder model, TextView textView) {
+        Basilisk.bindModel(model, textView);
+        Basilisk.bindTextView(textView, model);
+    }
 }

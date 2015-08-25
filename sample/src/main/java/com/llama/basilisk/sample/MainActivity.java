@@ -35,13 +35,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
-        Basilisk.bindModel(this.twoWayModel, this.editText1);
-        Basilisk.bindModel(this.twoWayModel, this.editText2);
-        Basilisk.bindTextView(this.editText1, this.twoWayModel);
-        Basilisk.bindTextView(this.editText2, this.twoWayModel);
-
-        Basilisk.bindTextView(this.textView2, this.twoWayModel);
-        Basilisk.bindTextView(this.textView3, this.twoWayModel);
+        Basilisk.bind(this.twoWayModel, this.editText1);
+        Basilisk.bind(this.twoWayModel, this.editText2);
+        Basilisk.bind(this.twoWayModel, this.textView2);
+        Basilisk.bind(this.twoWayModel, this.textView3);
 
     }
 

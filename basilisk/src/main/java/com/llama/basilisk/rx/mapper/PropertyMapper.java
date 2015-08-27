@@ -1,14 +1,12 @@
-package com.llama.basilisk.rx;
+package com.llama.basilisk.rx.mapper;
 
 import android.content.res.Resources;
 import android.util.TypedValue;
 
-import rx.functions.Func1;
-
 /**
  * Created by Christian Ringshofer on 27.08.15.
  */
-public abstract class PropertyMapper implements Func1<Object, Object> {
+public abstract class PropertyMapper extends Mapper {
 
     @Override
     public Object call(Object value) {

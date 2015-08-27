@@ -1,15 +1,13 @@
-package com.llama.basilisk.rx;
+package com.llama.basilisk.rx.mapper;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import rx.functions.Func1;
-
 /**
  * Created by Christian Ringshofer on 26.08.15.
  */
-public abstract class TextMapper implements Func1<Object, Object> {
+public abstract class TextMapper extends Mapper {
 
     @Override
     public Object call(Object string) {

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.llama.basilisk.Basilisk;
 import com.llama.basilisk.BindModel;
-import com.llama.basilisk.rx.TextMapper;
+import com.llama.basilisk.rx.mapper.TextMapper;
 import com.llama.basilisk.sample.model.TwoWayModel;
 
 import butterknife.Bind;

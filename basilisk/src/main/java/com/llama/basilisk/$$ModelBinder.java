@@ -14,6 +14,10 @@ public abstract class $$ModelBinder extends Subscriber<Object> {
         return this.$$testSubject;
     }
 
+    public abstract Object get(String key);
+
+    public abstract void set(String key, Object value);
+
     @Override
     public void onCompleted() {
 
@@ -24,8 +28,8 @@ public abstract class $$ModelBinder extends Subscriber<Object> {
 
     }
 
-    public void bind(Object o) {
-        this.$$testSubject.onNext(o);
+    public void bind() {
+        this.$$testSubject.onNext(this.get("test"));
     }
 
 }

@@ -1,8 +1,6 @@
 package com.llama.basilisk.sample.model;
 
 import com.llama.basilisk.$$ModelBinder;
-import com.llama.basilisk.BindGetter;
-import com.llama.basilisk.BindSetter;
 import com.llama.basilisk.Model;
 
 /**
@@ -14,17 +12,19 @@ public class TwoWayModel extends $$ModelBinder {
 
     private String test = "Basilisk";
 
-    @BindGetter("test")
-    public String getTest() {
+    @Override
+    public Object get(String key) {
+
         return this.test;
+
     }
 
-    @BindSetter("test")
-    public void setTest(final String test) {
+    @Override
+    public void set(String key, Object value) {
 
-        this.test = test;
+        this.test = (String) value;
         // should be auto generated
-        super.bind(this.test);
+        super.bind();
 
     }
 
@@ -41,7 +41,7 @@ public class TwoWayModel extends $$ModelBinder {
     @Override
     public void onNext(Object s) {
         // should use generated / bound setter
-        this.setTest(String.valueOf(s));
+        this.set("test", String.valueOf(s));
     }
 
 }

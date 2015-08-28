@@ -12,6 +12,9 @@ import com.llama.basilisk.Basilisk;
 import com.llama.basilisk.BindModel;
 import com.llama.basilisk.binder.Properties;
 import com.llama.basilisk.binder.Property;
+import com.llama.basilisk.math.Add;
+import com.llama.basilisk.math.DivideBy;
+import com.llama.basilisk.math.Pow;
 import com.llama.basilisk.rx.mapper.PropertyMapper;
 import com.llama.basilisk.rx.mapper.TextMapper;
 import com.llama.basilisk.sample.model.TwoWayModel;
@@ -62,6 +65,13 @@ public class MainActivity extends AppCompatActivity {
         );
         Basilisk.bind(this.twoWayModel, this.textView2, TextMapper.regexReplace("(e\\@mail.com)", "email -> $1"));
         Basilisk.bind(this.twoWayModel, this.textView3, TextMapper.reverse());
+        Basilisk.bind(
+                this.twoWayModel,
+                this.frame1,
+                Properties.with(Property.WIDTH),
+                PropertyMapper.density(this.getResources()),
+                PropertyMapper.math(new Add(10), new Pow(2), new DivideBy(2))
+        );
         Basilisk.bind(this.twoWayModel, this.frame1, Properties.with(Property.HEIGHT), PropertyMapper.density(this.getResources()));
         this.twoWayModel.bind();
 

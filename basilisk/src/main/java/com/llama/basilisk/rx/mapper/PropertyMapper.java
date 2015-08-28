@@ -1,7 +1,10 @@
 package com.llama.basilisk.rx.mapper;
 
 import android.content.res.Resources;
+import android.support.annotation.NonNull;
 import android.util.TypedValue;
+
+import com.llama.basilisk.math.Formula;
 
 /**
  * Created by Christian Ringshofer on 27.08.15.
@@ -34,5 +37,18 @@ public abstract class PropertyMapper extends Mapper {
 
     public static PropertyMapper densityMapper() {
         return null;
+    }
+
+    public static PropertyMapper math(@NonNull final Formula... formulas) {
+        return new PropertyMapper() {
+            @Override
+            public float map(float value) {
+                float result = value;
+                for (final Formula formula : formulas) {
+                    result = formula.calculate(result);
+                }
+                return result;
+            }
+        };
     }
 }

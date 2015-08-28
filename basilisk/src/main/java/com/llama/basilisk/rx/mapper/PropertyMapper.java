@@ -10,6 +10,7 @@ public abstract class PropertyMapper extends Mapper {
 
     @Override
     public Object call(Object value) {
+        if (value instanceof Float) return this.map((Float) value);
         try {
             final float parsedValue = Float.parseFloat((String) value);
             return this.map(parsedValue);

@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import com.llama.basilisk.Basilisk;
 import com.llama.basilisk.BindModel;
+import com.llama.basilisk.binder.Properties;
+import com.llama.basilisk.binder.Property;
+import com.llama.basilisk.rx.mapper.PropertyMapper;
 import com.llama.basilisk.rx.mapper.TextMapper;
 import com.llama.basilisk.sample.model.TwoWayModel;
 
@@ -59,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         );
         Basilisk.bind(this.twoWayModel, this.textView2, TextMapper.regexReplace("(e\\@mail.com)", "email -> $1"));
         Basilisk.bind(this.twoWayModel, this.textView3, TextMapper.reverse());
-        Basilisk.bindHeight(this.twoWayModel, this.frame1);
+        Basilisk.bind(this.twoWayModel, this.frame1, Properties.with(Property.HEIGHT), PropertyMapper.density(this.getResources()));
         this.twoWayModel.bind();
 
     }

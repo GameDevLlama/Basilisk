@@ -52,7 +52,6 @@ public class Basilisk {
     private static void bindProperties(
             final View view,
             final $$ModelBinder model,
-            final Properties properties,
             final Mapper... propertyMappers
     ) {
 
@@ -63,7 +62,6 @@ public class Basilisk {
             }
         }
         subject.subscribe(new BinderSubscriber() {
-            private final Property[] p = properties.getProperties();
 
             @Override
             public void bind(Object o) {
@@ -87,19 +85,14 @@ public class Basilisk {
 
     }
 
-    public static void bind(final $$ModelBinder model, View view, Mapper... mappers) {
-        Basilisk.bind(model, view, null, mappers);
-    }
-
     public static void bind(
             @NonNull final $$ModelBinder model,
             @NonNull View view,
-            @Nullable Properties properties,
             Mapper... mappers
     ) {
         if (view instanceof EditText) Basilisk.bindModel(model, (TextView) view);
         if (view instanceof TextView) Basilisk.bindTextView((TextView) view, model, mappers);
-        if (properties != null) Basilisk.bindProperties(view, model, properties, mappers);
+        Basilisk.bindProperties(view, model, mappers);
     }
 
 }

@@ -4,12 +4,19 @@ import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.util.TypedValue;
 
+import com.llama.basilisk.binder.Property;
 import com.llama.basilisk.math.Formula;
 
 /**
  * Created by Christian Ringshofer on 27.08.15.
  */
-public abstract class PropertyMapper extends Mapper {
+public class PropertyMapper extends Mapper {
+
+    private final Property property;
+
+    private PropertyMapper(final Property property) {
+        this.property = property;
+    }
 
     @Override
     public Object call(Object value) {
@@ -22,9 +29,11 @@ public abstract class PropertyMapper extends Mapper {
         }
     }
 
-    public abstract float map(float value);
+    public float map(float value) {
+        return value;
+    }
 
-    public static PropertyMapper density(final Resources resources) {
+    public PropertyMapper density(final Resources resources) {
 
         return new PropertyMapper() {
             @Override
@@ -35,11 +44,7 @@ public abstract class PropertyMapper extends Mapper {
 
     }
 
-    public static PropertyMapper densityMapper() {
-        return null;
-    }
-
-    public static PropertyMapper math(@NonNull final Formula... formulas) {
+    public PropertyMapper math(@NonNull final Formula... formulas) {
         return new PropertyMapper() {
             @Override
             public float map(float value) {
@@ -51,4 +56,9 @@ public abstract class PropertyMapper extends Mapper {
             }
         };
     }
+
+    public static PropertyMapper forProperty(final Property property) {
+        return new PropertyMapper(property);
+    }
+
 }

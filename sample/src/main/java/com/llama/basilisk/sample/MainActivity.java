@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.llama.basilisk.Basilisk;
 import com.llama.basilisk.BindModel;
-import com.llama.basilisk.binder.Properties;
 import com.llama.basilisk.binder.Property;
 import com.llama.basilisk.math.Add;
 import com.llama.basilisk.math.DivideBy;
@@ -68,11 +67,16 @@ public class MainActivity extends AppCompatActivity {
         Basilisk.bind(
                 this.twoWayModel,
                 this.frame1,
-                Properties.with(Property.WIDTH),
-                PropertyMapper.density(this.getResources()),
-                PropertyMapper.math(new Add(10), new Pow(2), new DivideBy(2))
+                PropertyMapper
+                        .forProperty(Property.WIDTH)
+                        .density(this.getResources())
+                        .math(
+                                new Add(10),
+                                new Pow(2),
+                                new DivideBy(2)
+                        )
         );
-        Basilisk.bind(this.twoWayModel, this.frame1, Properties.with(Property.HEIGHT), PropertyMapper.density(this.getResources()));
+        Basilisk.bind(this.twoWayModel, this.frame1, PropertyMapper.forProperty(Property.HEIGHT).density(this.getResources()));
         this.twoWayModel.bind();
 
     }

@@ -10,40 +10,53 @@ import com.llama.basilisk.math.Formula;
 /**
  * Created by Christian Ringshofer on 27.08.15.
  */
-public class PropertyMapper extends Mapper {
+public class PropertyMapper extends Mapper
+{
 
-    private PropertyMapper(final Property property) {
+    private PropertyMapper(final Property property)
+    {
         super(property);
     }
 
-    private PropertyMapper() {
+    private PropertyMapper()
+    {
         super();
     }
 
-    public static PropertyMapper create(final Property property) {
-        return new PropertyMapper(property);
+    public static PropertyMapper create(final Property property)
+    {
+        final PropertyMapper propertyMapper = new PropertyMapper(property);
+        propertyMapper.addMapper(propertyMapper);
+        return propertyMapper;
     }
 
     @Override
-    public Object call(Object value) {
+    public Object call(Object value)
+    {
         if (value instanceof Float) return this.map((Float) value);
-        try {
+        try
+        {
             final float parsedValue = Float.parseFloat((String) value);
             return this.map(parsedValue);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException e)
+        {
             return this.map(0f);
         }
     }
 
-    public float map(float value) {
+    public float map(float value)
+    {
         return value;
     }
 
-    public PropertyMapper density(final Resources resources) {
+    public PropertyMapper density(final Resources resources)
+    {
 
-        this.addMapper(new PropertyMapper() {
+        this.addMapper(new PropertyMapper()
+        {
             @Override
-            public float map(float value) {
+            public float map(float value)
+            {
                 return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, resources.getDisplayMetrics());
             }
         });
@@ -51,13 +64,17 @@ public class PropertyMapper extends Mapper {
 
     }
 
-    public PropertyMapper math(@NonNull final Formula... formulas) {
+    public PropertyMapper math(@NonNull final Formula... formulas)
+    {
 
-        this.addMapper(new PropertyMapper() {
+        this.addMapper(new PropertyMapper()
+        {
             @Override
-            public float map(float value) {
+            public float map(float value)
+            {
                 float result = value;
-                for (final Formula formula : formulas) {
+                for (final Formula formula : formulas)
+                {
                     result = formula.calculate(result);
                 }
                 return result;

@@ -9,36 +9,48 @@ import java.util.regex.Pattern;
 /**
  * Created by Christian Ringshofer on 26.08.15.
  */
-public class TextMapper extends Mapper {
+public class TextMapper extends Mapper
+{
 
-    private TextMapper(final Property property) {
+    private TextMapper(final Property property)
+    {
         super(property);
     }
 
-    private TextMapper() {
-        super();
+    private TextMapper()
+    {
+        this(Property.TEXT);
     }
 
-    public static TextMapper create() {
-        return new TextMapper(Property.TEXT);
+    public static TextMapper create()
+    {
+        final TextMapper textMapper = new TextMapper();
+        textMapper.addMapper(textMapper);
+        return textMapper;
     }
 
     @Override
-    public Object call(Object string) {
+    public Object call(Object string)
+    {
         return this.map((String) string);
     }
 
-    public String map(final String string) {
+    public String map(final String string)
+    {
         return string;
     }
 
-    public TextMapper reverse() {
+    public TextMapper reverse()
+    {
 
-        this.addMapper(new TextMapper() {
+        this.addMapper(new TextMapper()
+        {
             @Override
-            public String map(String string) {
+            public String map(String string)
+            {
                 String reversed = "";
-                for (int i = string.length() - 1; i >= 0; i--) {
+                for (int i = string.length() - 1; i >= 0; i--)
+                {
                     reversed += string.charAt(i);
                 }
                 return reversed;
@@ -48,15 +60,18 @@ public class TextMapper extends Mapper {
 
     }
 
-    public TextMapper regexReplace(final String regex, final String replace) {
+    public TextMapper regexReplace(final String regex, final String replace)
+    {
 
-        this.addMapper(new TextMapper() {
+        this.addMapper(new TextMapper()
+        {
 
             private final Pattern pattern = Pattern.compile(regex);
             private final Matcher matcher = pattern.matcher("");
 
             @Override
-            public String map(String string) {
+            public String map(String string)
+            {
                 this.matcher.reset(string);
                 if (this.matcher.matches()) return this.matcher.replaceAll(replace);
                 return string;
@@ -66,11 +81,14 @@ public class TextMapper extends Mapper {
 
     }
 
-    public TextMapper caps() {
+    public TextMapper caps()
+    {
 
-        this.addMapper(new TextMapper() {
+        this.addMapper(new TextMapper()
+        {
             @Override
-            public String map(String string) {
+            public String map(String string)
+            {
                 return string.toUpperCase();
             }
         });
@@ -78,13 +96,17 @@ public class TextMapper extends Mapper {
 
     }
 
-    public TextMapper explode() {
+    public TextMapper explode()
+    {
 
-        this.addMapper(new TextMapper() {
+        this.addMapper(new TextMapper()
+        {
             @Override
-            public String map(String string) {
+            public String map(String string)
+            {
                 String explodedString = "";
-                for (int i = 0; i < string.length(); i++) {
+                for (int i = 0; i < string.length(); i++)
+                {
                     final char c = string.charAt(i);
                     explodedString += c;
                     if (i < string.length() - 1) explodedString += c == ' ' ? " " : "\u00A0";
@@ -96,11 +118,14 @@ public class TextMapper extends Mapper {
 
     }
 
-    public TextMapper sort() {
+    public TextMapper sort()
+    {
 
-        this.addMapper(new TextMapper() {
+        this.addMapper(new TextMapper()
+        {
             @Override
-            public String map(String string) {
+            public String map(String string)
+            {
                 char[] chars = string.toCharArray();
                 Arrays.sort(chars);
                 return String.valueOf(chars);

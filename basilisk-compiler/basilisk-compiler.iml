@@ -27,30 +27,28 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="basilisk" exported="" />
     <orderEntry type="library" exported="" name="javapoet-1.2.0" level="project" />
     <orderEntry type="library" exported="" name="maven-compiler-plugin-2.5.1" level="project" />
     <orderEntry type="library" exported="" name="maven-plugin-api-2.0.9" level="project" />
-    <orderEntry type="library" exported="" name="maven-artifact-2.0.9" level="project" />
-    <orderEntry type="library" exported="" name="maven-core-2.0.9" level="project" />
-    <orderEntry type="library" exported="" name="maven-toolchain-1.0" level="project" />
-    <orderEntry type="library" exported="" name="plexus-utils-3.0" level="project" />
-    <orderEntry type="library" exported="" name="plexus-compiler-api-1.9.1" level="project" />
-    <orderEntry type="library" exported="" name="plexus-compiler-manager-1.9.1" level="project" />
-    <orderEntry type="library" exported="" name="plexus-compiler-javac-1.9.1" level="project" />
-    <orderEntry type="library" exported="" name="plexus-container-default-1.0-alpha-9-stable-1" level="project" />
-    <orderEntry type="library" exported="" name="maven-settings-2.0.9" level="project" />
-    <orderEntry type="library" exported="" name="maven-plugin-parameter-documenter-2.0.9" level="project" />
-    <orderEntry type="library" exported="" name="maven-profile-2.0.9" level="project" />
-    <orderEntry type="library" exported="" name="maven-model-2.0.9" level="project" />
     <orderEntry type="library" exported="" name="wagon-provider-api-1.0-beta-2" level="project" />
+    <orderEntry type="library" exported="" name="maven-artifact-2.0.9" level="project" />
     <orderEntry type="library" exported="" name="maven-repository-metadata-2.0.9" level="project" />
     <orderEntry type="library" exported="" name="maven-error-diagnostics-2.0.9" level="project" />
+    <orderEntry type="library" exported="" name="maven-core-2.0.9" level="project" />
     <orderEntry type="library" exported="" name="maven-project-2.0.9" level="project" />
     <orderEntry type="library" exported="" name="maven-plugin-descriptor-2.0.9" level="project" />
+    <orderEntry type="library" exported="" name="maven-toolchain-1.0" level="project" />
     <orderEntry type="library" exported="" name="maven-artifact-manager-2.0.9" level="project" />
+    <orderEntry type="library" exported="" name="plexus-utils-3.0" level="project" />
     <orderEntry type="library" exported="" name="maven-monitor-2.0.9" level="project" />
+    <orderEntry type="library" exported="" name="maven-settings-2.0.9" level="project" />
+    <orderEntry type="library" exported="" name="maven-plugin-parameter-documenter-2.0.9" level="project" />
     <orderEntry type="library" exported="" name="wagon-webdav-1.0-beta-2" level="project" />
+    <orderEntry type="library" exported="" name="maven-profile-2.0.9" level="project" />
+    <orderEntry type="library" exported="" name="maven-model-2.0.9" level="project" />
     <orderEntry type="library" exported="" name="junit-3.8.1" level="project" />
+    <orderEntry type="library" exported="" name="rxjava-1.0.4" level="project" />
     <orderEntry type="library" exported="" name="maven-reporting-api-2.0.9" level="project" />
     <orderEntry type="library" exported="" name="commons-cli-1.0" level="project" />
     <orderEntry type="library" exported="" name="plexus-interactivity-api-1.0-alpha-4" level="project" />
@@ -60,9 +58,13 @@
     <orderEntry type="library" exported="" name="wagon-ssh-1.0-beta-2" level="project" />
     <orderEntry type="library" exported="" name="doxia-sink-api-1.0-alpha-10" level="project" />
     <orderEntry type="library" exported="" name="maven-plugin-registry-2.0.9" level="project" />
+    <orderEntry type="library" exported="" name="plexus-compiler-api-1.9.1" level="project" />
     <orderEntry type="library" exported="" name="slide-webdavlib-2.1" level="project" />
     <orderEntry type="library" exported="" name="commons-logging-1.0.4" level="project" />
+    <orderEntry type="library" exported="" name="plexus-compiler-manager-1.9.1" level="project" />
+    <orderEntry type="library" exported="" name="plexus-compiler-javac-1.9.1" level="project" />
     <orderEntry type="library" exported="" name="wagon-http-shared-1.0-beta-2" level="project" />
+    <orderEntry type="library" exported="" name="plexus-container-default-1.0-alpha-9-stable-1" level="project" />
     <orderEntry type="library" exported="" name="xml-apis-1.0.b2" level="project" />
     <orderEntry type="library" exported="" name="wagon-ssh-common-1.0-beta-2" level="project" />
     <orderEntry type="library" exported="" name="jsch-0.1.27" level="project" />
@@ -72,5 +74,6 @@
     <orderEntry type="library" exported="" name="jtidy-4aug2000r7-dev" level="project" />
     <orderEntry type="library" exported="" name="plexus-utils-1.0.2" level="project" />
     <orderEntry type="library" exported="" name="classworlds-1.1" level="project" />
+    <orderEntry type="library" exported="" name="rxandroid-0.24.0" level="project" />
   </component>
 </module>

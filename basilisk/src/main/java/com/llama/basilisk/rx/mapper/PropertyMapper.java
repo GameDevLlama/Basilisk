@@ -12,10 +12,12 @@ import com.llama.basilisk.math.Formula;
  */
 public class PropertyMapper extends Mapper {
 
-    private final Property property;
-
     private PropertyMapper(final Property property) {
-        this.property = property;
+        super(property);
+    }
+
+    private PropertyMapper() {
+        super();
     }
 
     @Override
@@ -35,17 +37,19 @@ public class PropertyMapper extends Mapper {
 
     public PropertyMapper density(final Resources resources) {
 
-        return new PropertyMapper() {
+        this.addMapper(new PropertyMapper() {
             @Override
             public float map(float value) {
                 return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, resources.getDisplayMetrics());
             }
-        };
+        });
+        return this;
 
     }
 
     public PropertyMapper math(@NonNull final Formula... formulas) {
-        return new PropertyMapper() {
+
+        this.addMapper(new PropertyMapper() {
             @Override
             public float map(float value) {
                 float result = value;
@@ -54,10 +58,12 @@ public class PropertyMapper extends Mapper {
                 }
                 return result;
             }
-        };
+        });
+        return this;
+
     }
 
-    public static PropertyMapper forProperty(final Property property) {
+    public static PropertyMapper create(final Property property) {
         return new PropertyMapper(property);
     }
 

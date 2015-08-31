@@ -14,8 +14,7 @@ import com.llama.basilisk.binder.Property;
 import com.llama.basilisk.math.Add;
 import com.llama.basilisk.math.DivideBy;
 import com.llama.basilisk.math.Pow;
-import com.llama.basilisk.rx.mapper.PropertyMapper;
-import com.llama.basilisk.rx.mapper.TextMapper;
+import com.llama.basilisk.rx.mapper.Mapper;
 import com.llama.basilisk.sample.model.TwoWayModel;
 
 import butterknife.Bind;
@@ -58,17 +57,17 @@ public class MainActivity extends AppCompatActivity {
         Basilisk.bind(this.twoWayModel, this.editText1);
         Basilisk.bind(this.twoWayModel, this.editText2);
         Basilisk.bind(this.twoWayModel, this.textView1,
-                TextMapper.regexReplace("(luigi)", "mario likes -> $1"),
-                TextMapper.sort(),
-                TextMapper.explode()
+                Mapper.forText()
+                        .regexReplace("(luigi)", "mario likes -> $1")
+                        .sort()
+                        .explode()
         );
-        Basilisk.bind(this.twoWayModel, this.textView2, TextMapper.regexReplace("(e\\@mail.com)", "email -> $1"));
-        Basilisk.bind(this.twoWayModel, this.textView3, TextMapper.reverse());
+        Basilisk.bind(this.twoWayModel, this.textView2, Mapper.forText().regexReplace("(e\\@mail.com)", "email -> $1"));
+        Basilisk.bind(this.twoWayModel, this.textView3, Mapper.forText().reverse());
         Basilisk.bind(
                 this.twoWayModel,
                 this.frame1,
-                PropertyMapper
-                        .forProperty(Property.WIDTH)
+                Mapper.forProperty(Property.WIDTH)
                         .density(this.getResources())
                         .math(
                                 new Add(10),
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                                 new DivideBy(2)
                         )
         );
-        Basilisk.bind(this.twoWayModel, this.frame1, PropertyMapper.forProperty(Property.HEIGHT).density(this.getResources()));
+        Basilisk.bind(this.twoWayModel, this.frame1, Mapper.forProperty(Property.HEIGHT).density(this.getResources()));
         this.twoWayModel.bind();
 
     }

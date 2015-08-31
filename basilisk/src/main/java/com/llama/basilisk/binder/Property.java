@@ -5,6 +5,6 @@ package com.llama.basilisk.binder;
  */
 public enum Property {
 
-    WIDTH, HEIGHT
+    TEXT, WIDTH, HEIGHT
 
 }

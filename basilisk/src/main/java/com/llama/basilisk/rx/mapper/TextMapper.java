@@ -1,5 +1,7 @@
 package com.llama.basilisk.rx.mapper;
 
+import com.llama.basilisk.binder.Property;
+
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,9 +18,26 @@ public abstract class TextMapper extends Mapper {
 
     public abstract String map(final String string);
 
-    public static TextMapper reverse() {
+    private TextMapper(final Property property) {
+        super(property);
+    }
 
-        return new TextMapper() {
+    private TextMapper() {
+
+    }
+
+    public static TextMapper create() {
+        return new TextMapper(Property.TEXT) {
+            @Override
+            public String map(String string) {
+                return string;
+            }
+        };
+    }
+
+    public TextMapper reverse() {
+
+        this.addMapper(new TextMapper() {
             @Override
             public String map(String string) {
                 String reversed = "";
@@ -27,13 +46,14 @@ public abstract class TextMapper extends Mapper {
                 }
                 return reversed;
             }
-        };
+        });
+        return this;
 
     }
 
-    public static TextMapper regexReplace(final String regex, final String replace) {
+    public TextMapper regexReplace(final String regex, final String replace) {
 
-        return new TextMapper() {
+        this.addMapper(new TextMapper() {
 
             private final Pattern pattern = Pattern.compile(regex);
             private final Matcher matcher = pattern.matcher("");
@@ -44,24 +64,26 @@ public abstract class TextMapper extends Mapper {
                 if (this.matcher.matches()) return this.matcher.replaceAll(replace);
                 return string;
             }
-        };
+        });
+        return this;
 
     }
 
-    public static TextMapper caps() {
+    public TextMapper caps() {
 
-        return new TextMapper() {
+        this.addMapper(new TextMapper() {
             @Override
             public String map(String string) {
                 return string.toUpperCase();
             }
-        };
+        });
+        return this;
 
     }
 
-    public static TextMapper explode() {
+    public TextMapper explode() {
 
-        return new TextMapper() {
+        this.addMapper(new TextMapper() {
             @Override
             public String map(String string) {
                 String explodedString = "";
@@ -72,20 +94,22 @@ public abstract class TextMapper extends Mapper {
                 }
                 return explodedString;
             }
-        };
+        });
+        return this;
 
     }
 
-    public static TextMapper sort() {
+    public TextMapper sort() {
 
-        return new TextMapper() {
+        this.addMapper(new TextMapper() {
             @Override
             public String map(String string) {
                 char[] chars = string.toCharArray();
                 Arrays.sort(chars);
                 return String.valueOf(chars);
             }
-        };
+        });
+        return this;
 
     }
 

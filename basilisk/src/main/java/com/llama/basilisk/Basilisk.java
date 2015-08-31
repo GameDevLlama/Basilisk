@@ -1,18 +1,14 @@
 package com.llama.basilisk;
 
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.llama.basilisk.binder.BinderSubscriber;
-import com.llama.basilisk.binder.Properties;
-import com.llama.basilisk.binder.Property;
 import com.llama.basilisk.rx.AndroidWatcher;
 import com.llama.basilisk.rx.mapper.Mapper;
-import com.llama.basilisk.rx.mapper.PropertyMapper;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -55,33 +51,28 @@ public class Basilisk {
             final Mapper... propertyMappers
     ) {
 
-        Observable<Object> subject = model.$$getTestSubject();
-        for (Func1<Object, Object> propertyMapper : propertyMappers) {
-            if (propertyMapper instanceof PropertyMapper) {
-                subject = subject.map(propertyMapper);
+        for (final Mapper mapper : propertyMappers) {
+            Observable<Object> subject = model.$$getTestSubject();
+            for (final Mapper m : mapper.getMappers()) {
+                subject = subject.map(m);
             }
-        }
-        subject.subscribe(new BinderSubscriber() {
-
-            @Override
-            public void bind(Object o) {
-                final Float floatValue = (Float) o;
-                if (this.p.length > 0) {
+            subject.subscribe(new BinderSubscriber() {
+                @Override
+                public void bind(Object o) {
+                    final Float floatValue = (Float) o;
                     final ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-                    for (Property property : p) {
-                        switch (property) {
-                            case HEIGHT:
-                                layoutParams.height = floatValue.intValue();
-                                break;
-                            case WIDTH:
-                                layoutParams.width = floatValue.intValue();
-                                break;
-                        }
+                    switch (mapper.getProperty()) {
+                        case HEIGHT:
+                            layoutParams.height = floatValue.intValue();
+                            break;
+                        case WIDTH:
+                            layoutParams.width = floatValue.intValue();
+                            break;
                     }
                     view.requestLayout();
                 }
-            }
-        });
+            });
+        }
 
     }
 

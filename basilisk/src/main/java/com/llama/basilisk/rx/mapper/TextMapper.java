@@ -9,30 +9,27 @@ import java.util.regex.Pattern;
 /**
  * Created by Christian Ringshofer on 26.08.15.
  */
-public abstract class TextMapper extends Mapper {
-
-    @Override
-    public Object call(Object string) {
-        return this.map((String) string);
-    }
-
-    public abstract String map(final String string);
+public class TextMapper extends Mapper {
 
     private TextMapper(final Property property) {
         super(property);
     }
 
     private TextMapper() {
-
+        super();
     }
 
     public static TextMapper create() {
-        return new TextMapper(Property.TEXT) {
-            @Override
-            public String map(String string) {
-                return string;
-            }
-        };
+        return new TextMapper(Property.TEXT);
+    }
+
+    @Override
+    public Object call(Object string) {
+        return this.map((String) string);
+    }
+
+    public String map(final String string) {
+        return string;
     }
 
     public TextMapper reverse() {

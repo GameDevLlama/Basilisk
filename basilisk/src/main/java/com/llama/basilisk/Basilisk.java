@@ -12,7 +12,6 @@ import com.llama.basilisk.rx.mapper.Mapper;
 
 import rx.Observable;
 import rx.Subscriber;
-import rx.functions.Func1;
 
 /**
  * Created by Christian Ringshofer on 25.08.15.
@@ -21,28 +20,6 @@ public class Basilisk {
 
     public static void bindModel(final Subscriber<Object> model, final TextView textView) {
         AndroidWatcher.watch(textView).subscribe(model);
-    }
-
-    public static void bindTextView(
-            final TextView textView,
-            final $$ModelBinder model,
-            final Mapper... textMappers
-    ) {
-
-        Observable<Object> subject = model.$$getTestSubject();
-        for (Func1<Object, Object> textMapper : textMappers) {
-            subject = subject.map(textMapper);
-        }
-        subject.subscribe(new BinderSubscriber() {
-            @Override
-            public void bind(Object o) {
-                final String newString = (String) o;
-                if (textView.isFocused()) return;
-                if (textView.getText().equals(newString)) return;
-                textView.setText(newString);
-            }
-        });
-
     }
 
     private static void bindProperties(
@@ -61,15 +38,30 @@ public class Basilisk {
                 public void bind(Object o) {
                     final Float floatValue = (Float) o;
                     final ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-                    switch (mapper.getProperty()) {
-                        case HEIGHT:
-                            layoutParams.height = floatValue.intValue();
-                            break;
-                        case WIDTH:
-                            layoutParams.width = floatValue.intValue();
-                            break;
+                    // TODO do a cleanup
+                    try {
+                        switch (mapper.getProperty()) {
+                            case TEXT:
+                                if (view instanceof TextView) {
+                                    final String newString = (String) o;
+                                    if (view.isFocused()) return;
+                                    final TextView textView = (TextView) view;
+                                    if (textView.getText().equals(newString)) return;
+                                    textView.setText(newString);
+                                }
+                                break;
+                            case HEIGHT:
+                                layoutParams.height = floatValue.intValue();
+                                view.requestLayout();
+                                break;
+                            case WIDTH:
+                                layoutParams.width = floatValue.intValue();
+                                view.requestLayout();
+                                break;
+                        }
+                    } catch (ClassCastException e) {
+                        e.printStackTrace();
                     }
-                    view.requestLayout();
                 }
             });
         }
@@ -82,7 +74,6 @@ public class Basilisk {
             Mapper... mappers
     ) {
         if (view instanceof EditText) Basilisk.bindModel(model, (TextView) view);
-        if (view instanceof TextView) Basilisk.bindTextView((TextView) view, model, mappers);
         Basilisk.bindProperties(view, model, mappers);
     }
 

@@ -20,6 +20,10 @@ public class PropertyMapper extends Mapper {
         super();
     }
 
+    public static PropertyMapper create(final Property property) {
+        return new PropertyMapper(property);
+    }
+
     @Override
     public Object call(Object value) {
         if (value instanceof Float) return this.map((Float) value);
@@ -61,10 +65,6 @@ public class PropertyMapper extends Mapper {
         });
         return this;
 
-    }
-
-    public static PropertyMapper create(final Property property) {
-        return new PropertyMapper(property);
     }
 
 }

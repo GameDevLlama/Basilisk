@@ -16,6 +16,7 @@ import com.llama.basilisk.math.DivideBy;
 import com.llama.basilisk.math.Pow;
 import com.llama.basilisk.rx.ModelBinderImpl;
 import com.llama.basilisk.rx.mapper.Mapper;
+import com.llama.basilisk.sample.pseudogen.B;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,27 +25,27 @@ public class MainActivity extends AppCompatActivity {
 
     private ModelBinderImpl myModel = new ModelBinderImpl();
 
-    @BindModel
+    @BindModel(B.id.model_user_name)
     @Bind(R.id.basilisk_edit_text_1)
     EditText editText1;
 
-    @BindModel
+    @BindModel(B.id.model_user_name)
     @Bind(R.id.basilisk_edit_text_2)
     EditText editText2;
 
-    @BindModel
+    @BindModel(B.id.model_user_name)
     @Bind(R.id.basilisk_text_view_1)
     TextView textView1;
 
-    @BindModel
+    @BindModel(B.id.model_user_name)
     @Bind(R.id.basilisk_text_view_2)
     TextView textView2;
 
-    @BindModel
+    @BindModel(B.id.model_user_password)
     @Bind(R.id.basilisk_text_view_3)
     TextView textView3;
 
-    @BindModel
+    @BindModel(B.id.model_user_name)
     @Bind(R.id.basilisk_frame_1)
     FrameLayout frame1;
 

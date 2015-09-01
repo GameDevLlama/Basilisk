@@ -51,11 +51,11 @@ public class Basilisk {
                                 }
                                 break;
                             case HEIGHT:
-                                layoutParams.height = floatValue.intValue();
+                                layoutParams.height = floatValue != null ? floatValue.intValue() : 0;
                                 view.requestLayout();
                                 break;
                             case WIDTH:
-                                layoutParams.width = floatValue.intValue();
+                                layoutParams.width = floatValue != null ? floatValue.intValue() : 0;
                                 view.requestLayout();
                                 break;
                         }

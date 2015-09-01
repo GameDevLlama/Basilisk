@@ -5,8 +5,13 @@ package com.llama.basilisk.sample.pseudogen;
  */
 
 // generated
-public class B {
+public final class B {
 
-    public static final $$BasiliskIds id = new $$BasiliskIds();
+    public static final class id {
+
+        public static final int model_user_name = 0x00000001;
+        public static final int model_user_password = 0x00000002;
+
+    }
 
 }

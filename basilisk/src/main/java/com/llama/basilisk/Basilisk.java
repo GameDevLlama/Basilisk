@@ -77,4 +77,8 @@ public class Basilisk {
         Basilisk.bindProperties(view, model, mappers);
     }
 
+    public static void bind(final Object target) {
+
+    }
+
 }

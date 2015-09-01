@@ -8,7 +8,11 @@ import rx.subjects.PublishSubject;
  */
 public abstract class $$ModelBinder extends Subscriber<Object> {
 
-    private PublishSubject<Object> $$testSubject = PublishSubject.create();
+    private final PublishSubject<Object> $$testSubject;
+
+    public $$ModelBinder() {
+        this.$$testSubject = PublishSubject.create();
+    }
 
     public PublishSubject<Object> $$getTestSubject() {
         return this.$$testSubject;

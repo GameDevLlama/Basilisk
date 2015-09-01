@@ -4,7 +4,7 @@ import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.util.TypedValue;
 
-import com.llama.basilisk.binder.Property;
+import com.llama.basilisk.binding.Property;
 import com.llama.basilisk.math.Formula;
 
 /**
@@ -21,7 +21,9 @@ public class PropertyMapper extends Mapper {
     }
 
     public static PropertyMapper create(final Property property) {
-        return new PropertyMapper(property);
+        final PropertyMapper propertyMapper = new PropertyMapper(property);
+        propertyMapper.addMapper(propertyMapper);
+        return propertyMapper;
     }
 
     @Override

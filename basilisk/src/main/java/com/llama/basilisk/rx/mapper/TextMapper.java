@@ -1,6 +1,6 @@
 package com.llama.basilisk.rx.mapper;
 
-import com.llama.basilisk.binder.Property;
+import com.llama.basilisk.binding.Property;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -20,7 +20,9 @@ public class TextMapper extends Mapper {
     }
 
     public static TextMapper create() {
-        return new TextMapper(Property.TEXT);
+        final TextMapper textMapper = new TextMapper(Property.TEXT);
+        textMapper.addMapper(textMapper);
+        return textMapper;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package com.llama.basilisk.rx.mapper;
 
-import com.llama.basilisk.binder.Property;
+import com.llama.basilisk.binding.Property;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 

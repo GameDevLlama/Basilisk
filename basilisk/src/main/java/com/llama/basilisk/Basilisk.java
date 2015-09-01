@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.llama.basilisk.binder.BinderSubscriber;
+import com.llama.basilisk.binding.BinderSubscriber;
 import com.llama.basilisk.rx.AndroidWatcher;
 import com.llama.basilisk.rx.mapper.Mapper;
 
@@ -36,7 +36,7 @@ public class Basilisk {
             subject.subscribe(new BinderSubscriber() {
                 @Override
                 public void bind(Object o) {
-                    final Float floatValue = (Float) o;
+                    final Float floatValue = o instanceof String ? null : (Float) o;
                     final ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
                     // TODO do a cleanup
                     try {

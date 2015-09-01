@@ -1,4 +1,4 @@
-package com.llama.basilisk.binder;
+package com.llama.basilisk.binding;
 
 /**
  * Created by Christian Ringshofer on 27.08.15.

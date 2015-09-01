@@ -1,4 +1,4 @@
-package com.llama.basilisk.binder;
+package com.llama.basilisk.binding;
 
 import rx.Subscriber;
 
